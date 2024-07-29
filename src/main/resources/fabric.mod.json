@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "wheretfiam",
+	"version": "${version}",
+	"name": "whereTFiam",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/wheretfiam/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dfgben.wheretfiam.WhereTFiam"
+		],
+		"client": [
+			"dfgben.wheretfiam.WhereTFiamClient"
+		]
+	},
+	"mixins": [
+		"wheretfiam.mixins.json",
+		{
+			"config": "wheretfiam.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

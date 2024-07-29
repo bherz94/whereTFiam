@@ -1,0 +1,21 @@
+{
+  "category.flyingmod.keybinds": "Flight mod",
+  "category.navigationMod.keybinds": "Navigation mod",
+
+  "key.flyingmod.toggleflight": "Toggle flight",
+  "key.navigationMod.saveCoords": "Save current coords",
+
+  "gui.navmanager.coords.add": "Add Coords",
+  "gui.navmanager.coords.save": "Save Coords",
+  "gui.navmanager.start": "Start Navigation",
+  "gui.navmanager.stop": "Stop Navigation",
+  "gui.navmanager.currentPositionText": "Current Position: %s",
+  "gui.navmanager.navgationActiveText": "Navigating to %s: ",
+  "gui.navmanager.reachedDestinationText": "You have reached your destination!",
+  "gui.navmanager.placeholder.name": "Coords name",
+  "gui.navmanager.placeholder.xPos": "Coords X position value",
+  "gui.navmanager.placeholder.yPos": "Coords Y position value",
+  "gui.navmanager.placeholder.zPos": "Coords Z position value",
+  "gui.flyingmod.toggleflight.enabled": "Flying enabled",
+  "gui.flyingmod.toggleflight.disabled": "Flying disabled"
+}

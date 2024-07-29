@@ -3,7 +3,9 @@
 	"package": "dfgben.wheretfiam.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+		"ClientCommonNetworkHandlerMixin",
+		"InGameHudMixin",
+		"GameMenuScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,7 +1,8 @@
 {
-  "category.navigationMod.keybinds": "Navigation mod",
+  "key.category.navigationmod.keybinds": "Navigation mod",
 
   "key.navigationMod.saveCoords": "Save current coords",
+  "key.navigationMod.openNavGui": "Open Navigation GUI",
 
   "gui.navmanager.coords.add": "Add Coords",
   "gui.navmanager.coords.save": "Save Coords",

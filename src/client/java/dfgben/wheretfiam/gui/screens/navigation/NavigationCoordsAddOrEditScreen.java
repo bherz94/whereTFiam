@@ -3,10 +3,13 @@ package dfgben.wheretfiam.gui.screens.navigation;
 import dfgben.wheretfiam.WhereTFiamClient;
 import dfgben.wheretfiam.gui.inputs.ValidationTextFieldWidget;
 import dfgben.wheretfiam.models.navigation.NavigationCoordsModel;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.input.CharInput;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -111,8 +114,8 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (WhereTFiamClient.openUI.matchesKey(keyCode, scanCode) && !isAnyTextFieldFocused()) {
+    public boolean keyPressed(KeyInput input) {
+        if (WhereTFiamClient.openUI.matchesKey(input) && !isAnyTextFieldFocused()) {
             if (client != null) {
                 this.client.setScreen(null);
                 WhereTFiamClient.closeUI = false;
@@ -120,33 +123,33 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
         }
 
         for (TextFieldWidget textField : screenTextFields) {
-            if (textField.keyPressed(keyCode, scanCode, modifiers)) {
+            if (textField.keyPressed(input)) {
                 return true;
             }
         }
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(input);
     }
 
     @Override
-    public boolean charTyped(char chr, int keyCode) {
+    public boolean charTyped(CharInput input) {
         for (TextFieldWidget textField : screenTextFields) {
-            if (textField.charTyped(chr, keyCode)) {
+            if (textField.charTyped(input)) {
                 return true;
             }
         }
 
-        return super.charTyped(chr, keyCode);
+        return super.charTyped(input);
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(Click click, boolean doubled) {
         for (TextFieldWidget textField : screenTextFields) {
-            if (textField.mouseClicked(mouseX, mouseY, button)) {
+            if (textField.mouseClicked(click, doubled)) {
                 this.setFocused(textField);
                 return true;
             }
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(click, doubled);
     }
 
     private boolean isAnyTextFieldFocused() {

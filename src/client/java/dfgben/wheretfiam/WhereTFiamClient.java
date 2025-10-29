@@ -9,29 +9,33 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class WhereTFiamClient implements ClientModInitializer {
 	private static KeyBinding addCoords;
 	public static KeyBinding openUI;
-	public static boolean flyingEnabled;
 	public static boolean closeUI = true;
+
+	public static final KeyBinding.Category NAV_MOD_CATEGORY =
+			// Pass the translation key string for the category here
+			KeyBinding.Category.create((Identifier.of("navigationmod", "keybinds")));
 
 	public final static NavigationDataHelper NAVMANAGER = NavigationDataHelper.load();
 
 	@Override
 	public void onInitializeClient() {
 		addCoords = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-				"key.navigation.addCoords",
+				"gui.navmanager.coords.add",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_PAGE_UP,
-				"category.navigationMod.keybinds"
+				NAV_MOD_CATEGORY
 		));
 		openUI = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.navigation.openNavGui",
 				InputUtil.Type.KEYSYM,
 				GLFW.GLFW_KEY_V,
-				"category.navigationMod.keybinds"
+				NAV_MOD_CATEGORY
 		));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {

@@ -9,6 +9,7 @@ import dfgben.wheretfiam.models.navigation.SimpleCoordsModel;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -75,21 +76,21 @@ public class NavigationDataScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int int_3) {
-        if (WhereTFiamClient.openUI.matchesKey(keyCode, scanCode)) {
+    public boolean keyPressed(KeyInput input) {
+        if (WhereTFiamClient.openUI.matchesKey(input)) {
             if (client != null) {
                 this.client.setScreen(null);
                 WhereTFiamClient.closeUI = false;
             }
         }
-        if (keyCode == GLFW.GLFW_KEY_DELETE) {
+        if (input.getKeycode() == GLFW.GLFW_KEY_DELETE) {
             var selected = this.navCoords.getSelectedOrNull();
             if (selected != null) {
                 this.removeSelectedCoords();
             }
         }
 
-        return super.keyPressed(keyCode, scanCode, int_3);
+        return super.keyPressed(input);
     }
 
     public void selectionChanged(NavigationCoordsEntry entry) {

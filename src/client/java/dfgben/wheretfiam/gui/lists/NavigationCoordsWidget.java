@@ -35,7 +35,6 @@ public class NavigationCoordsWidget extends AlwaysSelectedEntryListWidget<Naviga
     @Override
     public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderList(context, mouseX, mouseY, delta);
-        this.renderDecorations(context, mouseX, mouseY);
         this.renderScrollBar(context);
     }
 
@@ -92,19 +91,18 @@ public class NavigationCoordsWidget extends AlwaysSelectedEntryListWidget<Naviga
 
     public void select(NavigationCoordsEntry entry) {
         this.setSelected(entry);
-        this.ensureVisible(entry);
         this.parent.selectionChanged(entry);
     }
 
     private void renderScrollBar(DrawContext context) {
         int scrollbarXStart = this.getScrollbarX();
         int scrollbarXEnd = scrollbarXStart + 6;
-        int maxScroll = this.getMaxPosition();
+        int maxScroll = this.getMaxScrollY();
         if (maxScroll > this.getBottom() - this.getTop()) {
             int scrollHeight = this.getBottom() - this.getTop();
-            int scrollBarHeight = (scrollHeight * scrollHeight) / this.getMaxPosition();
+            int scrollBarHeight = (scrollHeight * scrollHeight) / this.getMaxScrollY();
             scrollBarHeight = Math.max(32, scrollBarHeight);
-            int scrollBarTop = (int) this.getScrollAmount() * (scrollHeight - scrollBarHeight) / (maxScroll - scrollHeight) + this.getTop();
+            int scrollBarTop = (int) this.getDeltaYPerScroll() * (scrollHeight - scrollBarHeight) / (maxScroll - scrollHeight) + this.getTop();
             if (scrollBarTop < this.getTop()) {
                 scrollBarTop = this.getTop();
             }

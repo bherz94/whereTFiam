@@ -2,6 +2,7 @@ package dfgben.wheretfiam.gui.lists;
 
 import dfgben.wheretfiam.models.navigation.NavigationCoordsModel;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 import net.minecraft.text.Text;
@@ -18,9 +19,9 @@ public class NavigationCoordsEntry extends AlwaysSelectedEntryListWidget.Entry<N
     }
 
     @Override
-    public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        int drawY = y + entryHeight / 2 - 5;
-        int drawableWidth = entryWidth - 100;
+    public void render(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
+        int drawY = parent.getY() / 2 - 5;
+        int drawableWidth = parent.getWidth() - 100;
 
 //        String entryText = String.format("%s: X: %s, Y: %s, Z:%s", coords.getName(), coords.getxPos(), coords.getyPos(), coords.getzPos());
 //
@@ -37,7 +38,7 @@ public class NavigationCoordsEntry extends AlwaysSelectedEntryListWidget.Entry<N
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(Click click, boolean doubled) {
         if (parent.isEntrySelected(this)) {
             parent.setOverlayToSelected();
         } else {

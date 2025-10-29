@@ -104,7 +104,7 @@ public class NavigationRenderer {
             this.targetReached = true;
         }
 
-        Vec3d lookVec = client.player.getRotationVec(tickCounter.getTickDelta(false));
+        Vec3d lookVec = client.player.getRotationVec(tickCounter.getDynamicDeltaTicks());
         Vec3d directionVec = targetVec.subtract(playerPos).normalize();
 
         // Calculate horizontal and vertical angles

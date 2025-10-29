@@ -1,8 +1,6 @@
 {
-  "category.flyingmod.keybinds": "Flight mod",
   "category.navigationMod.keybinds": "Navigation mod",
 
-  "key.flyingmod.toggleflight": "Toggle flight",
   "key.navigationMod.saveCoords": "Save current coords",
 
   "gui.navmanager.coords.add": "Add Coords",
@@ -15,7 +13,5 @@
   "gui.navmanager.placeholder.name": "Coords name",
   "gui.navmanager.placeholder.xPos": "Coords X position value",
   "gui.navmanager.placeholder.yPos": "Coords Y position value",
-  "gui.navmanager.placeholder.zPos": "Coords Z position value",
-  "gui.flyingmod.toggleflight.enabled": "Flying enabled",
-  "gui.flyingmod.toggleflight.disabled": "Flying disabled"
+  "gui.navmanager.placeholder.zPos": "Coords Z position value"
 }

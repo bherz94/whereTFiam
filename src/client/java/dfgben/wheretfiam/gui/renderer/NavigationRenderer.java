@@ -19,16 +19,14 @@ import java.util.Objects;
 
 public class NavigationRenderer {
 
-    private final MinecraftClient client;
     private boolean targetReached;
     private int showLength = 300;
     private int ticks = 0;
 
-    public NavigationRenderer(MinecraftClient client) {
-        this.client = client;
-    }
+    public NavigationRenderer() {}
 
     public void render(DrawContext context, RenderTickCounter tickCounter) {
+        MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) {
             return;
         }
@@ -58,7 +56,7 @@ public class NavigationRenderer {
             Text reachedText = Text.translatable("gui.navmanager.reachedDestinationText");
             int screenWidth = client.getWindow().getScaledWidth();
             int screenHeight = client.getWindow().getScaledHeight();
-            context.drawText(this.client.textRenderer, reachedText, screenWidth / 2 - client.textRenderer.getWidth(reachedText) / 2, 20, 0xFFFFFF, true);
+            context.drawText(client.textRenderer, reachedText, screenWidth / 2 - client.textRenderer.getWidth(reachedText) / 2, 20, 0xFFFFFF, true);
             if (ticks <= showLength) {
                 ticks++;
             } else {
@@ -129,9 +127,10 @@ public class NavigationRenderer {
     }
 
     private void renderDirectionHint(DrawContext context, String directionHint) {
+        MinecraftClient client = MinecraftClient.getInstance();
         int screenWidth = client.getWindow().getScaledWidth();
         int screenHeight = client.getWindow().getScaledHeight();
 
-        context.drawText(this.client.textRenderer, directionHint, screenWidth / 2 - client.textRenderer.getWidth(directionHint) / 2, 20, 0xFFFF00, true);
+        context.drawText(client.textRenderer, directionHint, screenWidth / 2 - client.textRenderer.getWidth(directionHint) / 2, 20, 0xFFFF00, true);
     }
 }

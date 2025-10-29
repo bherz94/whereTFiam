@@ -47,6 +47,11 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+    }
+
+    @Override
     public void init() {
         int fieldWidth = 200;
         int fieldHeight = 20;
@@ -57,7 +62,9 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
                 centerX,
                 40,
                 fieldWidth, fieldHeight, Text.literal("input_Name"));
-        this.name.setText(this.inputTextName);
+        if (isEditScreen) {
+            this.name.setText(this.inputTextName);
+        }
         this.name.setPlaceholder(Text.translatable("gui.navmanager.placeholder.name"));
 
         this.xPos = new ValidationTextFieldWidget(
@@ -91,18 +98,9 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
             textField.setEditableColor(0xFFFFFF); // Text color
             textField.setVisible(true); // Make the text field visible
             textField.setEditable(true);
+            this.addDrawableChild(textField);
         }
-    }
 
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-        String headline = this.isEditScreen ? "Edit coordinates for " : "Add coordinates for ";
-        context.drawCenteredTextWithShadow(textRenderer, headline + this.coords.getName(), width / 2, 10, 0xFFFFFF);
-
-        for (TextFieldWidget textField : screenTextFields) {
-            textField.render(context, mouseX, mouseY, delta);
-        }
         ButtonWidget myButton;
         this.addDrawableChild(myButton = ButtonWidget.builder(Text.translatable("gui.navmanager.coords.save"), press -> this.save())
                 .dimensions(width / 2 - 105, this.zPos.getBottom() + 10, 100, 20)
@@ -111,6 +109,13 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("gui.cancel"), press -> this.cancelPressed())
                 .dimensions(myButton.getRight() + 10, this.zPos.getBottom() + 10, 100, 20)
                 .build());
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+        String headline = this.isEditScreen ? "Edit coordinates for " : "Add coordinates for ";
+        context.drawCenteredTextWithShadow(this.textRenderer, headline + this.coords.getName(), width / 2, 10, 0xFFFFFF);
     }
 
     @Override
@@ -134,6 +139,7 @@ public class NavigationCoordsAddOrEditScreen extends Screen {
     public boolean charTyped(CharInput input) {
         for (TextFieldWidget textField : screenTextFields) {
             if (textField.charTyped(input)) {
+                System.out.println(textField.getText());
                 return true;
             }
         }

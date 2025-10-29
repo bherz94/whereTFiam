@@ -26,7 +26,7 @@ public class NavigationCoordsWidget extends AlwaysSelectedEntryListWidget<Naviga
             List<NavigationCoordsModel> list = navData.getCoordsList();
             if (list != null) {
                 for (NavigationCoordsModel set : list) {
-                    this.addEntry(new NavigationCoordsEntry(this.client, set, this));
+                    this.addEntry(new NavigationCoordsEntry(set, this));
                 }
             }
         }
@@ -100,9 +100,9 @@ public class NavigationCoordsWidget extends AlwaysSelectedEntryListWidget<Naviga
         int maxScroll = this.getMaxScrollY();
         if (maxScroll > this.getBottom() - this.getTop()) {
             int scrollHeight = this.getBottom() - this.getTop();
-            int scrollBarHeight = (scrollHeight * scrollHeight) / this.getMaxScrollY();
+            int scrollBarHeight = (scrollHeight * scrollHeight) / maxScroll;
             scrollBarHeight = Math.max(32, scrollBarHeight);
-            int scrollBarTop = (int) this.getDeltaYPerScroll() * (scrollHeight - scrollBarHeight) / (maxScroll - scrollHeight) + this.getTop();
+            int scrollBarTop = (int) this.getScrollY() * (scrollHeight - scrollBarHeight) / (maxScroll - scrollHeight) + this.getTop();
             if (scrollBarTop < this.getTop()) {
                 scrollBarTop = this.getTop();
             }

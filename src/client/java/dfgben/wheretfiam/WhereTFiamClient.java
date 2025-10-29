@@ -21,7 +21,7 @@ public class WhereTFiamClient implements ClientModInitializer {
     public static KeyBinding openUI;
     public static boolean closeUI = true;
 
-    public final static String MOD_ID = "WTFIam";
+    public final static String MOD_ID = "wtfiam";
 
     public static final KeyBinding.Category NAV_MOD_CATEGORY =
             // Pass the translation key string for the category here
@@ -70,11 +70,9 @@ public class WhereTFiamClient implements ClientModInitializer {
             }
         });
 
-        MinecraftClient client = MinecraftClient.getInstance();
-
         HudElementRegistry.attachElementBefore(
 				VanillaHudElements.CHAT,
 				Identifier.of(WhereTFiamClient.MOD_ID,"before_chat"),
-				navRenderer.render(client));
+				navRenderer::render);
     }
 }
